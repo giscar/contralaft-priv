@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="UsuarioMap" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Usuario" type="SBS.UIF.BUZ.Entity.Core.Usuario,SBS.UIF.BUZ.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="rm_usuario" class="Usuario">
+      <result property="IdUsuario" column="N_COD_ID"></result>
+      <result property="DetCodigo" column="C_DET_CODIGO"></result>
+      <result property="DetNombre" column="C_DET_NOMBRE"></result>
+      <result property="IdPerfil" column="N_COD_PERFIL"></result>
+      <result property="IdEntidad" column="N_COD_ENTIDAD"></result>
+      <result property="FlActivo" column="N_FL_ACTIVO"></result>
+      <result property="FecRegistro" column="D_FEC_REGISTRO"></result>
+      <result property="UsuRegistro" column="C_USU_REGISTRO"></result>
+      <result property="DetContrasenia" column="C_DET_CONTRA"></result>
+      
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+
+    <insert id="insert_usuario">
+      INSERT INTO usuario (
+      C_DET_NOMBRE,
+      C_DET_CONTRA)
+      VALUES
+      (#nombre#,
+      #password#)
+    </insert>
+
+    <select id="select_usuario" resultMap="rm_usuario" >
+      SELECT * WHERE C_DET_NOMBRE = #nombre# AND C_DET_CONTRA = #password#
+    </select>
+
+    <select id="select_todos" resultMap="rm_usuario" >
+      SELECT * FROM USUARIO
+    </select>
+
+  </statements>
+</sqlMap>
